@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <div id="svgContainer"></div>
     <script src="https://d3js.org/d3.v5.js"></script>
     <script>
         const rectArr = [210, 250, 170, 130, 90, 280, 121, 77]
-        var width =700
+        var width = 700
         var height = 500
         let svg = d3.select('#svgContainer').append('svg').attr('width', width + 'px').attr('height', height + 'px')
         svg.selectAll('rect')
-      .data(rectArr)
-      .enter()
-      .append('rect')
-      .attr('transform', 'translate(' + width + ',' + height + ') rotate(180)')
-      .attr('y', function (d, i) { return 0 })
-      .attr('x', function (d, i) {
-        return width - width / rectArr.length * (i + 1)
-      })
-      .attr('height', function (d) {
-        return 0
-      })
-      .attr('width', width / rectArr.length - 5)
-      .transition()
-      .delay(function (d, i) {
-        return i * 200
-      })
-      .duration(2000)
-      .ease(d3.easeBounce)
-      .attr('height', function (d, i) {
-        return d
-      })
-      .attr('fill', 'steelblue')
+            .data(rectArr)
+            .enter()
+            .append('rect')
+            .attr('transform', 'translate(' + width + ',' + height + ') rotate(180)')
+            .attr('y', function (d, i) { return 0 })
+            .attr('x', function (d, i) {
+                return width - width / rectArr.length * (i + 1)
+            })
+            .attr('height', function (d) {
+                return 0
+            })
+            .attr('width', width / rectArr.length - 5)
+            .transition()
+            .delay(function (d, i) {
+                return i * 200
+            })
+            .duration(2000)
+            .ease(d3.easeBounce)
+            .attr('height', function (d, i) {
+                return d
+            })
+            .attr('fill', 'steelblue')
 
     </script>
 </body>
+
 </html>
