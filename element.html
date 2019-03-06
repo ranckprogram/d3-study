@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <div>
+        <p id="myid">1</p>
+        <p>2</p>
+        <p>3</p>
+    </div>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script>
+        var p = d3.select('p')
+        p.text('p1e')
+        p.style('color', 'red')
+        var ap = p.append('p').text('append333')
+        p.insert('p', 'p').text('insert777')
+
+        var p = d3.select("#myid");
+        p.remove();
+        console.log(p)
+    </script>
+</body>
+
+</html>
