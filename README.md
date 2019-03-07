@@ -29,3 +29,11 @@
 - data   绑定一个数组
 
 *text()* 函数 参数 (data, index)
+
+
+> dataArr
+
+选择根节点 => 选择所有子节点 => data => enter => append => [attr, text]
+
+- data后进入enter
+- append会根据data补齐

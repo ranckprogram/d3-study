@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script>
+        var colorList = ['red', 'green', 'blue']
+        var nameList = ['ranck', 'lianxue', 'other']
+        var ul = d3.select('body').append('ul')
+        ul.selectAll('li').data(nameList).enter().append('li').attr('style', function (data, index) {
+            console.dir(index)
+            return `color: ${colorList[index]}` 
+        }).text( function(data, index) {
+            return data
+        })
+    </script>
+</body>
+
+</html>
