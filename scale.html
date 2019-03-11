@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script>
+        var dataset = [250, 210, 170, 130, 90];
+
+        var min = d3.min(dataset);
+        var max = d3.max(dataset);
+        console.dir(min)
+        var linear = d3.scaleLinear()
+            .domain([min, max])
+            .range([0, 500]);
+
+
+        var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
+        let svg = d3.select('body').append('svg').attr('width', '1000')
+        svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x", 20)
+            .attr("y", function (d, i) {
+                return i * rectHeight;
+            })
+            .attr("width", function (d) {
+                return linear(d);   //在这里用比例尺
+            })
+            .attr("height", rectHeight - 2)
+            .attr("fill", "steelblue");
+    </script>
+</body>
+
+</html>
