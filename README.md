@@ -37,3 +37,7 @@
 
 - data后进入enter
 - append会根据data补齐
+
+> scale 
+
+缩放是处理显示比例的工具
