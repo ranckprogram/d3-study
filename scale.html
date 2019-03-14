@@ -15,13 +15,12 @@
 
         var min = d3.min(dataset);
         var max = d3.max(dataset);
-        console.dir(min)
         var linear = d3.scaleLinear()
             .domain([0, max])
             .range([0, 1000]);
 
         var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
-        let svg = d3.select('body').append('svg').attr('width', '1000')
+        let svg = d3.select('body').append('svg').attr('width', '1000').attr('height', '180')
         svg.selectAll("rect")
             .data(dataset)
             .enter()
@@ -43,12 +42,17 @@
             })
             .attr("x", 40)
             .attr('y', function (d, i) {
-                return (i+1) * rectHeight -6
+                return (i + 1) * rectHeight - 6
             })
-            .attr('text-anchor',"middle")
+            .attr('text-anchor', "middle")
             .style('color', '#f99')
             .attr('fill', '#f88')
-
+        var x = d3.scaleLinear()
+            .domain([0, max])  // 输入范围
+            .range([0, 1000]);  // 输出范围
+        var axis = d3.axisBottom(x)
+        var gAxis = svg.append('g').attr('transform', 'translate(20, 140)')
+        gAxis.call(axis)
     </script>
 </body>
 
