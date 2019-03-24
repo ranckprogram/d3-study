@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="tree"></div>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script>
+        var width = 960;
+        var height = 500;
+        var margin = { left: 100, top: 100, right: 50, bottom: 50 }
+
+        var data = { "name": "中国", "children": [{ "name": "浙江", "children": [{ "name": "杭州" }, { "name": "宁波" }, { "name": "温州" }, { "name": "绍兴" }] }, { "name": "广西", "children": [{ "name": "桂林", "children": [{ "name": "秀峰区" }, { "name": "叠彩区" }, { "name": "象山区" }, { "name": "七星区" }] }, { "name": "南宁" }, { "name": "柳州" }, { "name": "防城港" }] }, { "name": "黑龙江", "children": [{ "name": "哈尔滨" }, { "name": "齐齐哈尔" }, { "name": "牡丹江" }, { "name": "大庆" }] }, { "name": "新疆", "children": [{ "name": "乌鲁木齐" }, { "name": "克拉玛依" }, { "name": "吐鲁番" }, { "name": "哈密" }] }] }
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        var g = svg.append("g")
+        .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')');
+
+        var root = d3.hierarchy(data);
+
+        console.dir(data)
+
+        console.dir(root)
+
+        // Tree
+        var tree = d3.tree()
+            .size([width - margin.left - margin.right, height - margin.top - margin.bottom]);
+
+            console.dir(tree(root))
+            console.dir(tree(root).links())
+
+        // Set initial vertical Tree
+        var link = g.selectAll(".link")
+            .data(tree(root).links())
+            .enter().append("path")
+            .attr("class", "link")
+            .attr("fill", "none")
+            .attr("stroke", "#ccc")
+            .attr("d", d3.linkVertical()
+                .x(function (d) { return d.x; })
+                .y(function (d) { return d.y; }));
+
+        var node = g.selectAll(".node")
+            .data(root.descendants())
+            .enter().append("g")
+            // .attr("class", function (d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
+            .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+
+        node.append("circle")
+            .attr("r", 2.5);
+
+        node.append("text")
+            .text(function (d) { return d.data.name; })
+            .attr('y', -10)
+            .attr('x', -10)
+            .attr('text-anchor', 'middle');
+    </script>
+</body>
+
+</html>
