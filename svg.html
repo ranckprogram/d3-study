@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+    <script>
+        var data = {
+            name: 'ranck', children: [{
+                name: 'sofy'
+            }, {
+                name: 'qi'
+            }]
+        }
+        margin = { left: 100, top: 100, right: 50, bottom: 50 }
+
+        var root = d3.hierarchy(data)
+
+        var tree = d3.tree().size([500, 320])
+    
+        tree(root)    // 这句很关键，可使数据中具有布局属性
+    
+        var svg = d3.select('body')
+            .append('svg')
+            .attr("width", 1211 )
+            .attr("height", 444)
+
+        var g = svg.append("g").attr('transform', 'translate(' + margin.left + ',' + margin.right + ')');
+
+        var node = g.selectAll('node').data(root.descendants()).enter().append('g')
+            .attr("transform", function (d) {
+                console.dir(d)
+                return "translate(" + d.x + "," + d.y + ")";
+            })
+
+
+        node.append('text').text(function (d) {
+            return d.data.name
+        })
+    </script>
+</body>
+
+</html>

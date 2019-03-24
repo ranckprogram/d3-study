@@ -54,3 +54,4 @@
 - g 下面 使用 g 构造节点 node  transform 属性设置位置
 - node 下 增加 circle
 - node 写增加 text 设置x y
+- root.descendants() 返回从当前节点开始返回其后代节点数组
