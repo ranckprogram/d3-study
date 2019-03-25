@@ -23,13 +23,13 @@
 
         var root = d3.hierarchy(data)
 
-        var tree = d3.tree().size([500, 320])
-    
+        var tree = d3.tree().size([500, 222])
+
         tree(root)    // 这句很关键，可使数据中具有布局属性
-    
+
         var svg = d3.select('body')
             .append('svg')
-            .attr("width", 1211 )
+            .attr("width", 1211)
             .attr("height", 444)
 
         var g = svg.append("g").attr('transform', 'translate(' + margin.left + ',' + margin.right + ')');
@@ -39,6 +39,12 @@
                 console.dir(d)
                 return "translate(" + d.x + "," + d.y + ")";
             })
+
+        var link = g.selectAll('.link').data(tree(root).links())
+            .enter().append('path')
+            .attr("stroke", "#ccc")
+            .attr("fill", "none")
+            .attr("d", d3.linkVertical().x(function (d) { return d.x; }).y(function (d) { return d.y; }));
 
 
         node.append('text').text(function (d) {
