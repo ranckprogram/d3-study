@@ -55,3 +55,23 @@
 - node 下 增加 circle
 - node 写增加 text 设置x y
 - root.descendants() 返回从当前节点开始返回其后代节点数组
+
+
+
+#### 树的操作
+
+- 跟每一个树中元素绑定id，然后通过选择器删除
+- 改变数据，清空树后重新渲染
+  - 点击，获取当前元素的id
+  - 除去data中的current
+
+
+
+### 鼠标缩放的核心
+
+```
+  .call(d3.zoom().on("zoom", function () {
+        svg.attr("transform", d3.event.transform)
+     }))
+     .append("g")
+```
